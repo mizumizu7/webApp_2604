@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 仮想環境
+venv/
+
+# ビルド
+build/
+dist/
+*.egg-info/
+
+# 環境変数
+.env
+
+# SQLite
+*.db
+

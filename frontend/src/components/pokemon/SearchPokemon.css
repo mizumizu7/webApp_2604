@@ -1,0 +1,15 @@
+
+div span h2 {
+    /* position: relative; */
+    margin: 5px 0;
+}
+
+div img {
+    /* position: relative; */
+    margin-top: -10px;
+    z-index: 1;
+}
+
+div p {
+    margin: 0px;
+}

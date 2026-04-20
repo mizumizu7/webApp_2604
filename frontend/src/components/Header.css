@@ -1,0 +1,8 @@
+.header-area {
+    background-color: aqua;
+}
+
+.card-area {
+    display: flex;
+    justify-content: center;
+}

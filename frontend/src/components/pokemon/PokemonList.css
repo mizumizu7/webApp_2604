@@ -1,0 +1,26 @@
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    background-color: rgb(236, 79, 77);
+    border-radius: 50px 50px 0 0;
+}
+
+.pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+}
+
+.add-btn {
+    background-color: yellowgreen;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.del-btn {
+    background-color: red;
+}
+
