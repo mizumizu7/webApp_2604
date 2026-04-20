@@ -43,12 +43,8 @@ def login_user(user: UserLogin, db: Session = Depends(get_db)):
     # ユーザ取得
     db_user = db.query(User).filter(User.email == user.email).first()
 
-    # 要修正：原因切り分けように、一旦messageを分けているが同じにする
-    if not db_user:
-        raise HTTPException(status_code=401, detail="Invalid email or password 1")
-    
-    if not verify_password(user.password, db_user.hashed_password):
-        raise HTTPException(status_code=401, detail="Invalid email or password 2")
+    if not db_user or not verify_password(user.password, db_user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
     
     token = create_access_token(data={"sub": str(db_user.id)})
     
@@ -57,9 +53,6 @@ def login_user(user: UserLogin, db: Session = Depends(get_db)):
         "token_type": "bearer"
     }
 
-    # return db_user
-
-# @router.get("/me")
 @router.get("/me", response_model=UserResponse)
 def read_me(current_user: User = Depends(get_current_user)):
     return current_user

@@ -66,7 +66,6 @@ def add_favorite(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    print("=====================hoge")
     poke_count = db.query(Favorite).filter(Favorite.user_id == current_user.id).count()
     if poke_count >= 6:
         raise HTTPException(status_code=409, detail="Registration limit")

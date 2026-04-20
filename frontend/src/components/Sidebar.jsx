@@ -48,7 +48,7 @@ const Sidebar = ({auth: {user, setUser, screen, setScreen}}) => {
                     <>
                     {user.username}さん
                     <LogoutForm onLogout={ handleLogout } />
-                    <div className="search-area-2">
+                    <div className="search-area">
                         <SearchPokemon />
                     </div>
                     </>
@@ -66,11 +66,6 @@ const Sidebar = ({auth: {user, setUser, screen, setScreen}}) => {
                     </>
                 )}
             </div>
-            
-            {/* 検索機能はログイン後に使えるように変更 */}
-            {/* <div className="search-area-1">
-                <SearchPokemon />
-            </div> */}
         </>
     )
 }

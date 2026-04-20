@@ -3,8 +3,6 @@ const FavoriteBtn = ({ poke_id, isFavorite, onToggle }) => {
 
     return (
         <>
-        {/* {error && <p>{error}</p>} */}
-
         <button
             onClick={() => onToggle(poke_id)}
             className={isFavorite ? "del-btn" : "add-btn"}

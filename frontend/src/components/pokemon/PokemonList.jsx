@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import PokemonCard from "./PokemonCard"
 import "./PokemonList.css"
-import AddFavoriteBtn from "../favorites/AddFavoriteBtn"
-import DelFavoriteBtn from "../favorites/DelFavoriteBtn"
 import FavoriteBtn from "../favorites/FavoriteBtn"
 
 
@@ -52,7 +50,7 @@ const PokemonList = ({user}) => {
           } else {
               const res = await axios.post(
                   "http://localhost:8000/favorites/register",
-                  {id},
+                  {poke_id: id},
                   {headers: {
                           Authorization: `Bearer ${token}`,
                   }}
@@ -88,12 +86,12 @@ const PokemonList = ({user}) => {
         {pokemonList.map((p) => (
           <div key={p.id}>
             <PokemonCard pokemon={p} />
-            {/* <AddFavoriteBtn poke_id={p.id} className="add-btn" />
-            <DelFavoriteBtn poke_id={p.id} className="del-btn" /> */}
+            {user &&
             <FavoriteBtn
               poke_id={p.id}
               isFavorite={favoriteIds.includes(p.id)}
               onToggle={toggleFavorite} />
+            }
           </div>
         ))}
       </div>

@@ -12,7 +12,6 @@ const Header = ({auth: {
     const [error, setError] = useState("")
     const [favoList, setFavoList] = useState([])
 
-    // const handleGetFavorite = async () => {
     useEffect(() => {
         const token = localStorage.getItem("access_token")
 
@@ -46,7 +45,6 @@ const Header = ({auth: {
                 ))}
             </div>
             }
-
             </>
             :
             <p>

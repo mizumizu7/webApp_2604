@@ -30,7 +30,6 @@ async def search_pokemon(name: str):
         res = await client.get(url)
 
     if res.status_code != 200:
-        # return {"error": "Pokemon not found"}
         raise HTTPException(status_code=404, detail="Pokemon not found")
 
     data = res.json()
