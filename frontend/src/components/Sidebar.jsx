@@ -1,11 +1,19 @@
+import { useContext } from "react"
 import axios from "axios"
+
+import "./Sidebar.css"
 import RegisterForm from "./users/RegisterForm"
 import LoginForm from "./users/LoginForm"
 import LogoutForm from "./users/LogoutForm"
 import SearchPokemon from "./pokemon/SearchPokemon"
-import "./Sidebar.css"
 
-const Sidebar = ({auth: {user, setUser, screen, setScreen}}) => {
+import { UserContext } from "../contexts/UserContext"
+
+
+const Sidebar = () => {
+
+    const { user, setUser, screen, setScreen } = useContext(UserContext);
+
     const handleRegisterSuccess = () => {
         setScreen("login")
     }

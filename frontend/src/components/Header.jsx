@@ -1,14 +1,15 @@
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
+
 import "./Header.css"
-import { useEffect, useState } from "react"
 import PokemonCard from "./pokemon/PokemonCard"
 
-const Header = ({auth: {
-    user,
-    setUser,
-    screen,
-    setScreen,}}) => {
+import { UserContext } from "../contexts/UserContext"
 
+
+const Header = () => {
+
+    const { user, setUser, screen, setScreen } = useContext(UserContext);
     const [error, setError] = useState("")
     const [favoList, setFavoList] = useState([])
 
@@ -29,7 +30,6 @@ const Header = ({auth: {
                 })
         }
     }, [user])
-
 
     return (
         <div className="header-area">
@@ -56,4 +56,3 @@ const Header = ({auth: {
 }
 
 export default Header
-

@@ -1,5 +1,6 @@
 import "./PokemonCard.css"
 
+
 const PokemonCard = ({pokemon}) => {
   return (
     <div className="pokemon-card">

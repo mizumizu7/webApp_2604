@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
-import PokemonCard from "./PokemonCard"
+
 import "./PokemonList.css"
+import PokemonCard from "./PokemonCard"
 import FavoriteBtn from "../favorites/FavoriteBtn"
 
+import { UserContext } from "../../contexts/UserContext"
 
-const PokemonList = ({user}) => {
+
+const PokemonList = () => {
+
+  const { user } = useContext(UserContext)
   const [pokemonList, setPokemonList] = useState([])
   const [offset, setOffset]           = useState(0)
   const [favoriteIds, setFavoriteIds] = useState([])
@@ -32,9 +37,6 @@ const PokemonList = ({user}) => {
       .then(res => setPokemonList(res.data.results))
   }, [offset])
 
-  
-  const [error, setError] = useState("")
-
   const toggleFavorite = async (id) => {
       const token = localStorage.getItem("access_token")
 
@@ -58,7 +60,7 @@ const PokemonList = ({user}) => {
               setFavoriteIds(prev => [...prev, id])
           }
       } catch (err) {
-          setError("お気に入り処理に失敗しました")
+          alert("お気に入り処理に失敗しました")
       }
   }
 
