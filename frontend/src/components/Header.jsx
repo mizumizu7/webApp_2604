@@ -5,31 +5,32 @@ import "./Header.css"
 import PokemonCard from "./pokemon/PokemonCard"
 
 import { UserContext } from "../contexts/UserContext"
+import { FavoriteContext } from "../contexts/FavoriteContext"
 
 
 const Header = () => {
 
-    const { user, setUser, screen, setScreen } = useContext(UserContext);
+    const { user, setUser, screen, setScreen } = useContext(UserContext)
+    const { favoriteIds } = useContext(FavoriteContext)
+
     const [error, setError] = useState("")
     const [favoList, setFavoList] = useState([])
 
     useEffect(() => {
         const token = localStorage.getItem("access_token")
 
-        if (token) {
-            axios.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${token}`
+        if (!token) return
 
-            axios.get("http://localhost:8000/favorites")
-                .then((res) => {
-                    setFavoList(res.data.results)
-                })
-                .catch(() => {
-                    setError("お気に入り参照に失敗しました")
-                })
-        }
-    }, [user])
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+
+        axios.get("http://localhost:8000/favorites")
+            .then((res) => {
+                setFavoList(res.data.results)
+            })
+            .catch(() => {
+                setError("お気に入り取得に失敗しました")
+            })
+    }, [user, favoriteIds])
 
     return (
         <div className="header-area">

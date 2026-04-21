@@ -6,26 +6,16 @@ import PokemonCard from "./PokemonCard"
 import FavoriteBtn from "../favorites/FavoriteBtn"
 
 import { UserContext } from "../../contexts/UserContext"
+import { FavoriteContext } from "../../contexts/FavoriteContext"
 
 
 const PokemonList = () => {
 
   const { user } = useContext(UserContext)
+  const { favoriteIds, setFavoriteIds } = useContext(FavoriteContext)
+
   const [pokemonList, setPokemonList] = useState([])
   const [offset, setOffset]           = useState(0)
-  const [favoriteIds, setFavoriteIds] = useState([])
-
-  useEffect(() => {
-    const token = localStorage.getItem("access_token")
-
-    axios.get("http://localhost:8000/favorites/ids",
-        {headers: {
-            Authorization: `Bearer ${token}`,
-        }}
-      )
-      .then(res => setFavoriteIds(res.data.results))
-      .catch(() => console.log("お気に入り取得失敗"))
-  }, [user])
 
   // ポケモン一覧を取得 現状50体ずつ表示
   useEffect(() => {

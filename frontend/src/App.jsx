@@ -4,12 +4,14 @@ import Sidebar from './components/Sidebar'
 import PokemonList from './components/pokemon/PokemonList'
 
 import { UserProvider } from './contexts/UserContext'
+import { FavoriteProvider } from './contexts/FavoriteContext'
 
 
 function App() {
 
   return (
     <UserProvider>
+    <FavoriteProvider>
       <div className='header'>
         <Header />
       </div>
@@ -23,6 +25,7 @@ function App() {
           <PokemonList />
         </div>
       </div>
+    </FavoriteProvider>
     </UserProvider>
   )
 }
