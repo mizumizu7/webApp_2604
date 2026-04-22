@@ -6,13 +6,13 @@ import PokemonCard from "./PokemonCard"
 import FavoriteBtn from "../favorites/FavoriteBtn"
 
 import { UserContext } from "../../contexts/UserContext"
-import { FavoriteContext } from "../../contexts/FavoriteContext"
+import { useFavorites } from "../../hooks/useFavorites"
 
 
 const PokemonList = () => {
 
   const { user } = useContext(UserContext)
-  const { favoriteIds, setFavoriteIds } = useContext(FavoriteContext)
+  const { favoriteIds, toggleFavorite } = useFavorites()
 
   const [pokemonList, setPokemonList] = useState([])
   const [offset, setOffset]           = useState(0)
@@ -26,33 +26,6 @@ const PokemonList = () => {
       })
       .then(res => setPokemonList(res.data.results))
   }, [offset])
-
-  const toggleFavorite = async (id) => {
-      const token = localStorage.getItem("access_token")
-
-      try {
-          if (favoriteIds.includes(id)) {
-              const res = await axios.delete(
-                  `http://localhost:8000/favorites/delete/${id}`,
-                  {headers: {
-                      Authorization: `Bearer ${token}`,
-                  }}
-              )
-              setFavoriteIds(prev => prev.filter(f => f !== id))
-          } else {
-              const res = await axios.post(
-                  "http://localhost:8000/favorites/register",
-                  {poke_id: id},
-                  {headers: {
-                          Authorization: `Bearer ${token}`,
-                  }}
-              )
-              setFavoriteIds(prev => [...prev, id])
-          }
-      } catch (err) {
-          alert("お気に入り処理に失敗しました")
-      }
-  }
 
   return (
     <>
