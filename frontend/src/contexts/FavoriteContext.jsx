@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import axios from "axios"
+import apiClient from "../api/apiClient"
 
 import { UserContext } from "./UserContext"
 
@@ -13,15 +13,9 @@ export const FavoriteProvider = ({ children }) => {
     const [favoriteIds, setFavoriteIds] = useState([])
 
     useEffect(() => {
-        const token = localStorage.getItem("access_token")
+        if (!user) return
 
-        if (!token) return
-
-        axios.get("http://localhost:8000/favorites/ids",
-            {headers: {
-                Authorization: `Bearer ${token}`,
-            }}
-        )
+        apiClient.get("/favorites/ids")
         .then(res => setFavoriteIds(res.data.results))
         .catch(() => console.log("お気に入りIDs取得失敗"))
     }, [user])

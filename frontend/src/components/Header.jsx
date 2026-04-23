@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import axios from "axios"
+import apiClient from "../api/apiClient"
 
 import "./Header.css"
 import PokemonCard from "./pokemon/PokemonCard"
@@ -17,13 +17,9 @@ const Header = () => {
     const [favoList, setFavoList] = useState([])
 
     useEffect(() => {
-        const token = localStorage.getItem("access_token")
+        if (!user) return
 
-        if (!token) return
-
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-
-        axios.get("http://localhost:8000/favorites")
+        apiClient.get("/favorites")
             .then((res) => {
                 setFavoList(res.data.results)
             })

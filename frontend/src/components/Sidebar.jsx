@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import axios from "axios"
+import apiClient from "../api/apiClient"
 
 import "./Sidebar.css"
 import RegisterForm from "./users/RegisterForm"
@@ -21,32 +21,22 @@ const Sidebar = () => {
     const handleLoginSuccess = (token) => {
         localStorage.setItem("access_token", token)
 
-        axios.defaults.headers.common[
-            "Authorization"
-        ] = `Bearer ${token}`
-
-        axios.get("http://localhost:8000/users/me")
+        apiClient.get("/users/me")
         .then((res) => {
             console.log("current user:", res.data)
             setUser(res.data)
         })
         .catch(() => {
             console.log("not authenticated") // token が無効な場合など
-
             setUser(null)
             setScreen("login")
-            localStorage.removeItem("access_token")
-            delete axios.defaults.headers.common["Authorization"]
         })
-
-        // 将来的にはinterceptorでの共通化処理を推奨(APIが増える, 認証必須APIが多い, 401処理を一元化したい)
     }
 
     const handleLogout = () => {
         setUser(null)
         setScreen("login")
         localStorage.removeItem("access_token")
-        delete axios.defaults.headers.common["Authorization"]
     }
 
     return (

@@ -1,5 +1,6 @@
 import { useState } from "react"
-import axios from "axios"
+import apiClient from "../../api/apiClient"
+
 
 const RegisterForm = ({ onRegisterSuccess }) => {
   const [username, setUsername] = useState("")
@@ -16,7 +17,7 @@ const RegisterForm = ({ onRegisterSuccess }) => {
     setLoading(true)
 
     try {
-      await axios.post("http://localhost:8000/users/register", {
+      await apiClient.post("/users/register", {
         username,
         email,
         password,

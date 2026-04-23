@@ -1,5 +1,6 @@
 import { useState } from "react"
-import axios from "axios"
+import apiClient from "../../api/apiClient"
+
 
 const LoginForm = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState("")
@@ -13,8 +14,8 @@ const LoginForm = ({ onLoginSuccess }) => {
     setLoading(true)
 
     try {
-      const res = await axios.post(
-        "http://localhost:8000/users/login",
+      const res = await apiClient.post(
+        "/users/login",
         {
           email,
           password,

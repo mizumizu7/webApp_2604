@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import axios from "axios"
+import apiClient from "../../api/apiClient"
 
 import "./PokemonList.css"
 import PokemonCard from "./PokemonCard"
@@ -19,7 +19,7 @@ const PokemonList = () => {
 
   // ポケモン一覧を取得 現状50体ずつ表示
   useEffect(() => {
-    axios.get("http://localhost:8000/pokemon/index",
+    apiClient.get("/pokemon/index",
       {
         params:{offset, limit: 50}
         // params:{offset, limit: 1025}

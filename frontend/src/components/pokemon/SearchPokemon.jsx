@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import apiClient from "../../api/apiClient"
 
 import "./SearchPokemon.css"
 import FavoriteBtn from "../favorites/FavoriteBtn"
@@ -18,8 +18,8 @@ const SearchPokemon = () => {
   const searchPokemon = async () => {
     try {
       setError("")
-      const res = await axios.get(
-        `http://localhost:8000/pokemon/search/${name.toLowerCase()}`
+      const res = await apiClient.get(
+        `/pokemon/search/${name.toLowerCase()}`
       )
       setPokemon(res.data)
     } catch {
