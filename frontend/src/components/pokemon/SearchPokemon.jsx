@@ -43,17 +43,23 @@ const SearchPokemon = () => {
         {error && <p>{error}</p>}
 
         {pokemon && (
-          <div>
-            <span><p>ID: {pokemon.id}</p></span>
-            <span><h2>{pokemon.name}</h2></span>
-            <img src={pokemon.image} alt={pokemon.name} />
-            <p>タイプ: {pokemon.types.join(", ")}</p>
-            <p>身長: {pokemon.height}</p>
-            <p>体重: {pokemon.weight}</p>
+          <div className="search-result">
+            <div className="base-info">
+              <p>No. {pokemon.id}</p>
+              <h3>{pokemon.name}</h3>
+              <img src={pokemon.image} alt={pokemon.name} />
+            </div>
+
             <FavoriteBtn
               poke_id={pokemon.id}
               isFavorite={favoriteIds.includes(pokemon.id)}
               onToggle={toggleFavorite} />
+
+            <div className="sub-info">
+              <p>タイプ: {pokemon.types.join(", ")}</p>
+              <p>身長: {pokemon.height}</p>
+              <p>体重: {pokemon.weight}</p>
+            </div>
           </div>
         )}
       </div>

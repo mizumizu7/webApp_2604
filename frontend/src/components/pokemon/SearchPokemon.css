@@ -1,15 +1,19 @@
 
-div span h2 {
-    /* position: relative; */
-    margin: 5px 0;
+.search-result .base-info {
+  text-align: center;
 }
 
-div img {
-    /* position: relative; */
-    margin-top: -10px;
-    z-index: 1;
+.search-result .base-info p,
+.search-result .base-info h3,
+.search-result .sub-info p {
+  margin: 0;
 }
 
-div p {
-    margin: 0px;
+.search-result .base-info img {
+  width: 120px;
+  margin-top: 8px;
+}
+
+.search-result .sub-info {
+  margin-top: 12px;
 }

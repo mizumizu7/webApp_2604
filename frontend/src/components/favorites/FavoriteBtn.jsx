@@ -1,3 +1,5 @@
+import "./FavoriteBtn.css"
+
 
 const FavoriteBtn = ({ poke_id, isFavorite, onToggle }) => {
 

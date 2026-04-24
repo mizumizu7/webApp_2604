@@ -1,3 +1,4 @@
+
 .title {
     display: flex;
     align-items: center;
@@ -13,14 +14,3 @@
     gap: 2px;
     justify-content: center;
 }
-
-.add-btn {
-    background-color: yellowgreen;
-    /* justify-content: center; */
-    /* align-items: center; */
-}
-
-.del-btn {
-    background-color: red;
-}
-
