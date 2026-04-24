@@ -1,8 +1,10 @@
 
 .add-btn {
     background-color: yellowgreen;
+    font-size: 20px;
 }
 
 .del-btn {
     background-color: red;
+    font-size: 20px;
 }

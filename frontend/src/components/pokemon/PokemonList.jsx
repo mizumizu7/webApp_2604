@@ -4,6 +4,7 @@ import apiClient from "../../api/apiClient"
 import "./PokemonList.css"
 import PokemonCard from "./PokemonCard"
 import FavoriteBtn from "../favorites/FavoriteBtn"
+import DetailModal from "./DetailModal"
 
 import { UserContext } from "../../contexts/UserContext"
 import { useFavorites } from "../../hooks/useFavorites"
@@ -16,6 +17,7 @@ const PokemonList = () => {
 
   const [pokemonList, setPokemonList] = useState([])
   const [offset, setOffset]           = useState(0)
+  const [selectPoke, setSelectPoke]   = useState(null)
 
   // ポケモン一覧を取得 現状50体ずつ表示
   useEffect(() => {
@@ -48,15 +50,17 @@ const PokemonList = () => {
       </div>
 
       <div className="pokemon-list">
+        {user &&
+        <DetailModal
+          selectPoke={selectPoke}
+          onClose={() => setSelectPoke(null)} />
+        }
+
         {pokemonList.map((p) => (
           <div key={p.id}>
-            <PokemonCard pokemon={p} />
-            {user &&
-            <FavoriteBtn
-              poke_id={p.id}
-              isFavorite={favoriteIds.includes(p.id)}
-              onToggle={toggleFavorite} />
-            }
+            <div onClick={() => setSelectPoke(p)}>
+              <PokemonCard pokemon={p} />
+            </div>
           </div>
         ))}
       </div>

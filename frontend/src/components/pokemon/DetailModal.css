@@ -1,0 +1,39 @@
+
+.modal-overlay {
+  position: fixed;
+  width: 40%;
+  height: 50%;
+  margin-top: 5px;
+
+  background-color: whitesmoke;
+  text-align: center;
+
+  border: 1px solid;
+  border-radius: 40%;
+  box-shadow: 0 5px 5px #bcbec2;
+}
+
+.modal-overlay .id-name {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: -8px;
+}
+
+.modal-overlay p {
+    font-weight: bold;
+    margin: 10px;
+}
+
+.modal-overlay img {
+    width: 180px;
+}
+
+.close-btn {
+  width: 120px;
+  font-size: 30px;
+  font-weight: bold;
+
+  background: none;
+  cursor: pointer;
+}
