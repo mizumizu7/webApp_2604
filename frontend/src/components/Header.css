@@ -1,8 +1,26 @@
+
 .header-area {
-    background-color: aqua;
+    background-color: rgb(255, 237, 121);
+}
+
+.favo-area {
+    text-align: center;
+}
+
+.card-btn-area {
+    display: flex;
+    justify-content: center;
 }
 
 .card-area {
     display: flex;
     justify-content: center;
+}
+
+.edit-btn {
+    width: 6em;
+    height: 2em;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
 }
