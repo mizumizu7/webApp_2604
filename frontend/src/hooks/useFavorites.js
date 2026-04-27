@@ -23,7 +23,8 @@ export const useFavorites = () => {
                 setFavoriteIds(prev => [...prev, id])
             }
         } catch (err) {
-            alert("お気に入り処理に失敗しました")
+            const err_msg = err.response?.data?.detail
+            alert(`お気に入り処理に失敗しました\n${err_msg}`)
         }
     }
 

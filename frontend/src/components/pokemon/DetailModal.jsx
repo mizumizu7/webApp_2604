@@ -25,7 +25,7 @@ const DetailModal = ({selectPoke, onClose}) => {
             
             {isFavo ? <p>のお気に入りを解除する</p> : <p>をお気に入りに登録する</p>}
 
-            <div>
+            <div onClick={onClose}>
                 <FavoriteBtn
                     poke_id={selectPoke.id}
                     isFavorite={isFavo}

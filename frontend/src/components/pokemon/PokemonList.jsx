@@ -59,7 +59,7 @@ const PokemonList = () => {
         {pokemonList.map((p) => (
           <div key={p.id}>
             <div onClick={() => setSelectPoke(p)}>
-              <PokemonCard pokemon={p} />
+              <PokemonCard pokemon={p} isFavorite={favoriteIds.includes(p.id)}/>
             </div>
           </div>
         ))}
