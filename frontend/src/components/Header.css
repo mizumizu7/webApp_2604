@@ -2,6 +2,8 @@
 .header-area {
     background-color: rgb(255, 237, 121);
     display: flex;
+    border-radius: 25px;
+    padding: 3px 0;
 }
 
 .nav-area {
@@ -21,6 +23,11 @@
 .favo-area {
     width: 80%;
     text-align: center;
+    position: relative;
+}
+
+.favo-area p {
+    margin: 2px;
 }
 
 .card-btn-area {
@@ -31,12 +38,24 @@
 .card-area {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.each-card {
+    background-color: rgb(255, 247, 196);
+    border-radius: 50%;
+    margin: 1px;
 }
 
 .edit-btn {
     width: 6em;
     height: 2em;
     position: absolute;
-    right: 0;
+    top: 2px;
+    right: 2px;
     margin-right: 20px;
+}
+
+.not-login button {
+    margin: 0 8px;
 }

@@ -16,26 +16,45 @@
 }
 
 .modal-overlay .id-name {
-    display: flex;
-    justify-content: center;
-    margin-top: 8px;
-    margin-bottom: -8px;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: -8px;
 }
 
 .modal-overlay p {
-    font-weight: bold;
-    margin: 10px;
+  font-weight: bold;
+  margin: 10px;
 }
 
 .modal-overlay img {
-    width: 180px;
+  width: 180px;
 }
 
 .close-btn {
-  width: 120px;
   font-size: 30px;
   font-weight: bold;
 
   background: none;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    height: 40%;
+  }
+}
+
+@media (max-width: 431px) {
+  .modal-overlay {
+    width: 53%;
+    height: 30%;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1em;
+  }
 }

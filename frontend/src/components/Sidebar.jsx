@@ -52,9 +52,6 @@ const Sidebar = () => {
                     </>
                 ) : (
                     <>
-                    <button onClick={() => setScreen("register")}>アカウント登録</button>
-                    <button onClick={() => setScreen("login")}>ログイン</button>
-
                     {screen === "register" && (
                         <RegisterForm onRegisterSuccess={ handleRegisterSuccess } />
                     )}

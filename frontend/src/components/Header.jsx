@@ -44,7 +44,7 @@ const Header = () => {
             <div className="favo-area">
                 {user ?
                 <div>
-                    <p>お気に入り一覧</p>
+                    <p>{user.username} さんのお気に入り一覧</p>
                     {error && <p>{error}</p>}
 
                     {favoList.length === 0  &&
@@ -55,7 +55,7 @@ const Header = () => {
                     <div className="card-btn-area">
                         <div className="card-area">
                             {favoList.map((poke_info) => (
-                                <div key={poke_info.id}>
+                                <div key={poke_info.id} className="each-card">
                                     <PokemonCard pokemon={poke_info} />
                                     {isShowEdit &&
                                     <FavoriteBtn
@@ -75,7 +75,11 @@ const Header = () => {
                     }
                 </div>
                 :
-                <p>☆ログイン後お気に入り登録できます☆</p>
+                <div className="not-login">
+                    <p>☆ログイン後お気に入り登録できます☆</p>
+                    <button onClick={() => setScreen("register")}>アカウント登録</button>
+                    <button onClick={() => setScreen("login")}>ログイン</button>
+                </div>
                 }
             </div>
         </div>

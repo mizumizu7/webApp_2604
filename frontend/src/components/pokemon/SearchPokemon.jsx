@@ -22,6 +22,7 @@ const SearchPokemon = () => {
         `/pokemon/search/${name.toLowerCase()}`
       )
       setPokemon(res.data)
+      setName("")
     } catch {
       setError("ポケモンが見つかりません")
       setPokemon(null)
@@ -36,7 +37,9 @@ const SearchPokemon = () => {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="pikachu"
+          placeholder="メタモン"
+          // Enterキー入力で実行
+          onKeyDown={(e) => {if (e.key == "Enter") searchPokemon()}}
         />
         <button onClick={searchPokemon}>検索</button>
 

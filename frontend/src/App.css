@@ -1,16 +1,20 @@
+
 body {
   margin: 0;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header {
-  background-color: rgb(214, 169, 255);
   margin-bottom: 10px;
 }
 
 .app-layout {
   display: flex;
-  /* height: 100vh; */
-  /* min-height: 100vh; */
   height: 100%;
 }
 
@@ -20,9 +24,20 @@ body {
 
 .main-area {
   width: 80%;
-  /* background-color: rgb(240, 250, 245); */
   background-color: rgb(230, 230, 230);
   border-radius: 50px;
+}
+
+/* レスポンシブ対応 上書き防止のため下に記載する*/
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .main-area {
+    width: 100%;
+  }
 }
 
 
