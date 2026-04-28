@@ -1,17 +1,15 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import PokemonList from './components/pokemon/PokemonList'
-
-import { UserProvider } from './contexts/UserContext'
-import { FavoriteProvider } from './contexts/FavoriteContext'
+import Ranking from './components/ranking/Ranking'
 
 
 function App() {
 
   return (
-    <UserProvider>
-    <FavoriteProvider>
+    <>
       <div className='header'>
         <Header />
       </div>
@@ -22,11 +20,13 @@ function App() {
         </div>
 
         <div className='main-area'>
-          <PokemonList />
+          <Routes>
+            <Route path="/" element={<PokemonList />} />
+            <Route path="/ranking" element={<Ranking />} />
+          </Routes>
         </div>
       </div>
-    </FavoriteProvider>
-    </UserProvider>
+    </>
   )
 }
 

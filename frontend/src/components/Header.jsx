@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import apiClient from "../api/apiClient"
 
 import "./Header.css"
@@ -33,6 +34,13 @@ const Header = () => {
 
     return (
         <div className="header-area">
+            <div className="nav-area">
+                <nav className="link-area">
+                    <Link to="/">ポケモン一覧</Link>
+                    <Link to="/ranking">ランキング</Link>
+                </nav>
+            </div>
+            
             <div className="favo-area">
                 {user ?
                 <div>

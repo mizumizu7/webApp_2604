@@ -1,9 +1,25 @@
 
 .header-area {
     background-color: rgb(255, 237, 121);
+    display: flex;
+}
+
+.nav-area {
+    width: 20%;
+    text-align: center;
+    align-content: center;
+    border-right: 1px solid;
+    border-width: thin;
+}
+
+.link-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .favo-area {
+    width: 80%;
     text-align: center;
 }
 

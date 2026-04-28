@@ -31,7 +31,7 @@ const PokemonList = () => {
 
   return (
     <>
-      <div className="title">
+      <div className="pokemon-list-title">
         {offset >= 50 && (
           <button onClick={() => setOffset(offset - 50)}>← prev</button>
         )}
