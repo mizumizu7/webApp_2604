@@ -10,10 +10,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("access_token")
-        if (!token) {
-            setUser(null)
-            return
-        }
+        if (!token) return
         
         apiClient.get("/users/me")
             .then((res) => {

@@ -13,7 +13,7 @@ import { useFavorites } from "../hooks/useFavorites"
 
 const Header = () => {
 
-    const { user, setUser, screen, setScreen } = useContext(UserContext)
+    const { user, setScreen } = useContext(UserContext)
     const { favoriteIds, toggleFavorite } = useFavorites()
 
     const [error, setError] = useState("")

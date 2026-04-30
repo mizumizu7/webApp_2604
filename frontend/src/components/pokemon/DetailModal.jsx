@@ -1,17 +1,16 @@
-import { useContext } from "react"
-
 import "./DetailModal.css"
 import FavoriteBtn from "../favorites/FavoriteBtn"
 
-import { FavoriteContext } from "../../contexts/FavoriteContext"
 import { useFavorites } from "../../hooks/useFavorites"
 
 
 const DetailModal = ({selectPoke, onClose}) => {
+
+    // Hooksは順序依存のため、if/loop内で呼ばない
+    const { favoriteIds, toggleFavorite } = useFavorites()
+
     if (!selectPoke) return null
 
-    const { favoriteIds } = useContext(FavoriteContext)
-    const { isFavorite, toggleFavorite } = useFavorites()
     const isFavo = favoriteIds.includes(selectPoke.id)
     
     // 公式寄りのイラスト（ドット絵でない）を表示したい場合

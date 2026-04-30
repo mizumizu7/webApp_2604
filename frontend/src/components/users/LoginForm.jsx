@@ -25,6 +25,7 @@ const LoginForm = ({ onLoginSuccess }) => {
       // 親コンポーネントにログイン成功を通知(tokenだけ渡す)
       onLoginSuccess(res.data.access_token)
     } catch (err) {
+      console.log(err.response?.data)
       setError("メールアドレスまたはパスワードが正しくありません")
     } finally {
       setLoading(false)

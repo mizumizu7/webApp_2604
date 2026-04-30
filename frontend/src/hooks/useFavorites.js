@@ -11,12 +11,12 @@ export const useFavorites = () => {
 
         try {
             if (favoriteIds.includes(id)) {
-                const res = await apiClient.delete(
+                await apiClient.delete(
                     `/favorites/delete/${id}`,
                 )
                 setFavoriteIds(prev => prev.filter(f => f !== id))
             } else {
-                const res = await apiClient.post(
+                await apiClient.post(
                     "/favorites/register",
                     {poke_id: id},
                 )

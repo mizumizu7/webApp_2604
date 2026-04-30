@@ -13,7 +13,7 @@ import { useFavorites } from "../../hooks/useFavorites"
 const PokemonList = () => {
 
   const { user } = useContext(UserContext)
-  const { favoriteIds, toggleFavorite } = useFavorites()
+  const { favoriteIds, toggleFavorite: _toggleFavorite } = useFavorites()
 
   const [pokemonList, setPokemonList] = useState([])
   const [offset, setOffset]           = useState(0)
