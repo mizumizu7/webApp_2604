@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr, Field
 from typing_extensions import Annotated
 from datetime import datetime
 
+
 class UserCreate(BaseModel):
     email: EmailStr
     username: str
@@ -29,4 +30,11 @@ class UserResponse(BaseModel):
 
 class FavoriteRequest(BaseModel):
     poke_id: int
+
+
+class RankingResponseItem(BaseModel):
+    id: int
+    name: str
+    image: str
+    count: int
 

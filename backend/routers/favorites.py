@@ -51,7 +51,8 @@ async def get_favorites_info(
 
         poke_info_list.append({
             "id": poke_info_data["id"],
-            "name": poke_info_data["name"],
+            # "name": poke_info_data["name"], # 複数フォルムあるポケモン対策で下記に変更
+            "name": poke_info_data["species"]["name"],
             "image": poke_info_data["sprites"]["front_default"],
         })
 

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from db.database import SessionLocal, engine
 from db.models import Base
-from routers import users, pokemon, favorites
+from routers import users, pokemon, favorites, ranking
 
 
 # テーブル作成
@@ -27,3 +27,4 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(pokemon.router)
 app.include_router(favorites.router)
+app.include_router(ranking.router)

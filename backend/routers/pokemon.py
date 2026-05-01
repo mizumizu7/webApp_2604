@@ -88,3 +88,36 @@ async def get_pokemon_index(
         "results": results,
     }
 
+async def get_pokemons_by_ids(poke_id_list):
+    url = "https://pokeapi.co/api/v2/pokemon/"
+    species_url = f"https://pokeapi.co/api/v2/pokemon-species/"
+
+    async with httpx.AsyncClient() as client:
+        tasks = []
+        for poke_id in poke_id_list:
+            tasks.append(
+                asyncio.gather(
+                    client.get(f"{url}{int(poke_id)}"), # 基本情報取得用
+                    client.get(f"{species_url}{int(poke_id)}") # 日本語名取得用
+                )
+            )
+        
+        # asyncio.gatherの入れ子構造で、poke_id単位＋API単位の二重並列処理
+        responses = await asyncio.gather(*tasks)
+
+        poke_info_list = []
+        for pokemon_res, species_res in responses:
+            if pokemon_res.status_code != 200 or species_res.status_code != 200:
+                continue
+            pokemon_data = pokemon_res.json() # 基本情報取得用
+            species_data = species_res.json() # 日本語名取得用
+
+            poke_info_list.append({
+                "id": pokemon_data["id"],
+                "name": pokemon_data["species"]["name"],
+                "image": pokemon_data["sprites"]["front_default"],
+                # "image": pokemon_data["sprites"]["other"]["official-artwork"]["front_default"],
+            })
+    
+    return poke_info_list
+
