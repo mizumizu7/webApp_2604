@@ -14,9 +14,9 @@ FastAPIとReactを用いて作成したポケモン管理Webアプリです。
 | 👤 ユーザー認証 | ・ユーザー登録・ログイン機能<br>・JWTによる認証管理<br>・ログイン状態に応じて機能を制御 |
 | ⭐ お気に入り機能 | ・ポケモンをお気に入り登録 / 解除<br>・お気に入りは最大6体まで登録可能（ユーザーごとに個別管理）<br>・Contextを使用してグローバルに状態管理 |
 | 🏆 ランキング機能（実装予定） | ・データベースをもとにお気に入り登録数を集計してランキングを表示<br>・ポケモンごとの人気度（お気に入り数）を可視化<br>・登録数が多い順にソートして上位から表示 |
-| 🧭 レイアウト | ・ヘッダー固定<br>・サイドバー付きレイアウト<br>・メインエリアのみルーティングで切り替え |
+| 🧭 レイアウト | ・ヘッダー固定<br>・サイドバー付きレイアウト<br>・メインエリアのみルーティングで切り替え<br>・レスポンシブ対応 |
 | 🔁 ルーティング（react-router-dom） | ・`/` : ポケモン一覧<br>・`/favorites` : お気に入り一覧<br>・`/ranking` : お気に入り登録数順ランキング表示 |
-| 💾 データベース（SQLite） | ・SQLiteを使用してデータを永続化<br>・ユーザー情報・お気に入り情報を保存<br>・API経由でデータのCRUD操作を実装 |
+| 💾 データベース（SQLite） | ・SQLiteを使用してデータを永続化<br>・ユーザー情報・お気に入り情報を保存<br>・API経由でデータのCRUD操作を実装<br>・seed.py で初期データ投入可能 |
 
 </details>
 
@@ -103,11 +103,17 @@ Windows
 venv\Scripts\activate
 Mac / Linux
 source venv/bin/activate
+
 2. 依存関係インストール
 pip install -r requirements.txt
-3. データベースマイグレーション (現状実行する必要なし)
+
+3. データベースマイグレーション
 alembic upgrade head
-4. サーバー起動
+
+4. 初期データ投入（開発・動作確認用）
+python -m db.seed
+
+5. サーバー起動
 uvicorn main:app --reload
 📍 Backend URL
 API: http://127.0.0.1:8000
@@ -120,10 +126,10 @@ Swagger UI: http://127.0.0.1:8000/docs
 1. 依存関係インストール
 cd frontend
 npm install
+
 2. 開発サーバー起動
 npm run dev
 📍 Frontend URL
-
 http://localhost:5173
 ```
 
