@@ -38,9 +38,9 @@ const Ranking = () => {
             
             <div>
                 {Object.entries(grouped).map(([rank, pokemons]) => (
-                    <div key={rank}>
-                        <h2>{rank}位</h2>
-                        <div>
+                    <div key={rank} className="rank-layer">
+                        <h2><span className={`rank-number-${rank}`}>{rank}</span> 位</h2>
+                        <div className="rank-poke-area">
                             {pokemons.map(p => (
                                 <div key={p.id}>
                                     <PokemonCard pokemon={p} />

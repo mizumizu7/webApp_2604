@@ -26,6 +26,8 @@ input {
   width: 80%;
   background-color: rgb(230, 230, 230);
   border-radius: 50px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 /* レスポンシブ対応 上書き防止のため下に記載する*/

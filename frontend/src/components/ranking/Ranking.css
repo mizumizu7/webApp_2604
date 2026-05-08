@@ -24,3 +24,25 @@
     text-align: center;
     color: white;
 }
+
+.rank-layer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 下線、最後の要素を除く */
+.rank-layer:not(:last-child) {
+    border-bottom: 1px solid #9f75eb;
+}
+
+.rank-number-1 {color: gold; font-size: 1.7em;}
+.rank-number-2 {color: silver; font-size: 1.7em;}
+.rank-number-3 {color: darkorange; font-size: 1.7em;}
+
+.rank-poke-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 85%;
+}
