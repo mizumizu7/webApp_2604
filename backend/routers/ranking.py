@@ -27,11 +27,11 @@ async def get_ranking(db: Session = Depends(get_db)):
         .order_by(cnt.desc())
     )
 
-    # DBを確認して[(poke_id, cnt), (poke_id, cnt), ...]の形で降順(人気順)でデータを取得する 
+    # DBを確認して[(poke_id, cnt), (poke_id, cnt), ...]の形で降順(人気順)でデータを取得する
     raw_ranking_data = db.execute(stmt).all()
 
     if not raw_ranking_data:
-        raise HTTPException(status_code=404, detail="Ranking not found")    
+        raise HTTPException(status_code=404, detail="Ranking not found")
 
     # poke_idリストを作成して、それを元に対象のpoke_infoリストを取得する
     poke_id_list = [poke_id for poke_id, _ in raw_ranking_data]
@@ -42,16 +42,23 @@ async def get_ranking(db: Session = Depends(get_db)):
 
     # ランキングデータとカウント数をまとめて、フロント側に返す
     ranking_data = []
+    rank = 0
+    prev_count = None
     for poke_id, count in raw_ranking_data:
         poke_info = poke_info_dict.get(poke_id)
         if not poke_info:
             print(f"None pke_id : {poke_id} ---------------")
             continue
 
+        if prev_count != count:
+            rank += 1
+        prev_count = count
+
         ranking_data.append({
             # 辞書のアンパック（展開）をしている
             **poke_info,
-            "count": count
+            "count": count,
+            "rank": rank,
         })
 
     return ranking_data

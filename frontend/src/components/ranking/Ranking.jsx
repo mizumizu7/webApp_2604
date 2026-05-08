@@ -14,6 +14,20 @@ const Ranking = () => {
         .then(res => setRanking(res.data))
     }, [])
 
+    const ranking_top5 = ranking.filter(item => item.rank <= 5)
+
+    // 配列のグループ化 reduce（従来）, groupBy（未対応ブラウザあり）
+    // acc(accumulator)の初期値は第二引数で設定する
+    const grouped = ranking_top5.reduce((acc, item) => {
+        if (!acc[item.rank]) {
+            acc[item.rank] = [];
+        }
+
+        acc[item.rank].push(item);
+
+        return acc;
+    }, {});
+
     return(
         <div>
             <div className="ranking-title-color">
@@ -23,11 +37,16 @@ const Ranking = () => {
             </div>
             
             <div>
-                ランキング内容
-                {ranking.map(p => (
-                    <div key={p.id}>
-                        <PokemonCard pokemon={p} />
-                        <p>No. {p.id} 票数：{p.count}</p>
+                {Object.entries(grouped).map(([rank, pokemons]) => (
+                    <div key={rank}>
+                        <h2>{rank}位</h2>
+                        <div>
+                            {pokemons.map(p => (
+                                <div key={p.id}>
+                                    <PokemonCard pokemon={p} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>

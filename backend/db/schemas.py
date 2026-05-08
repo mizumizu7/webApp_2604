@@ -37,4 +37,5 @@ class RankingResponseItem(BaseModel):
     name: str
     image: str
     count: int
+    rank: int
 
