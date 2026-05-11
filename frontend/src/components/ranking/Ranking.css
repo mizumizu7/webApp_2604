@@ -46,3 +46,7 @@
     flex-wrap: wrap;
     width: 85%;
 }
+
+.no-ranking-data {
+    text-align: center;
+}

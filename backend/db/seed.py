@@ -9,13 +9,16 @@ db = SessionLocal()
 # -----------------
 
 users_data = [
-    {"name": "Taro", "email": "taro@example.com", "pw": "passpass"},
-    {"name": "Hanako", "email": "hanako@example.com", "pw": "passpass"},
-    {"name": "Ken", "email": "ken@example.com", "pw": "passpass"},
-    {"name": "Yuki", "email": "yuki@example.com", "pw": "passpass"},
-    {"name": "Satoshi", "email": "satoshi@example.com", "pw": "passpass"},
-    {"name": "Aiko", "email": "aiko@example.com", "pw": "passpass"},
-    {"name": "Daichi", "email": "daichi@example.com", "pw": "passpass"},
+    {"name": "userA", "email": "userA@test.com", "pw": "passpass"},
+    {"name": "userB", "email": "userB@test.com", "pw": "passpass"},
+    {"name": "userC", "email": "userC@test.com", "pw": "passpass"},
+    {"name": "userD", "email": "userD@test.com", "pw": "passpass"},
+    {"name": "userE", "email": "userE@test.com", "pw": "passpass"},
+    {"name": "userF", "email": "userF@test.com", "pw": "passpass"},
+    {"name": "userG", "email": "userG@test.com", "pw": "passpass"},
+    {"name": "userH", "email": "userH@test.com", "pw": "passpass"},
+    {"name": "userI", "email": "userI@test.com", "pw": "passpass"},
+    {"name": "userJ", "email": "userJ@test.com", "pw": "passpass"},
 ]
 
 for data in users_data:
@@ -43,36 +46,54 @@ db.commit()
 
 favorites_data = [
     
-    {"user_email": "taro@example.com", "poke_id": 1},
-    {"user_email": "hanako@example.com", "poke_id": 1},
-    {"user_email": "ken@example.com", "poke_id": 1},
-    {"user_email": "yuki@example.com", "poke_id": 1},
+    # 1位 8票 ランキング表示用
+    {"user_email": "userA@test.com", "poke_id": 25},
+    {"user_email": "userB@test.com", "poke_id": 25},
+    {"user_email": "userC@test.com", "poke_id": 25},
+    {"user_email": "userD@test.com", "poke_id": 25},
+    {"user_email": "userE@test.com", "poke_id": 25},
+    {"user_email": "userF@test.com", "poke_id": 25},
+    {"user_email": "userG@test.com", "poke_id": 25},
+    {"user_email": "userH@test.com", "poke_id": 25},
 
-    {"user_email": "taro@example.com", "poke_id": 4},
-    {"user_email": "hanako@example.com", "poke_id": 4},
-    {"user_email": "aiko@example.com", "poke_id": 4},
+    # 2位タイ 5票
+    {"user_email": "userA@test.com", "poke_id": 133},
+    {"user_email": "userB@test.com", "poke_id": 133},
+    {"user_email": "userC@test.com", "poke_id": 133},
+    {"user_email": "userD@test.com", "poke_id": 133},
+    {"user_email": "userE@test.com", "poke_id": 133},
 
-    {"user_email": "hanako@example.com", "poke_id": 7},
-    {"user_email": "ken@example.com", "poke_id": 7},
-    {"user_email": "yuki@example.com", "poke_id": 7},
+    {"user_email": "userF@test.com", "poke_id": 6},
+    {"user_email": "userG@test.com", "poke_id": 6},
+    {"user_email": "userH@test.com", "poke_id": 6},
+    {"user_email": "userI@test.com", "poke_id": 6},
+    {"user_email": "userJ@test.com", "poke_id": 6},
 
-    {"user_email": "taro@example.com", "poke_id": 26},
-    {"user_email": "ken@example.com", "poke_id": 26},
-    {"user_email": "yuki@example.com", "poke_id": 26},
-    {"user_email": "aiko@example.com", "poke_id": 26},
-    {"user_email": "daichi@example.com", "poke_id": 26},
+    # 3位タイ 4票
+    {"user_email": "userA@test.com", "poke_id": 9},
+    {"user_email": "userB@test.com", "poke_id": 9},
+    {"user_email": "userC@test.com", "poke_id": 9},
+    {"user_email": "userD@test.com", "poke_id": 9},
 
-    {"user_email": "daichi@example.com", "poke_id": 39},
-    {"user_email": "aiko@example.com", "poke_id": 39},
+    {"user_email": "userE@test.com", "poke_id": 150},
+    {"user_email": "userF@test.com", "poke_id": 150},
+    {"user_email": "userG@test.com", "poke_id": 150},
+    {"user_email": "userH@test.com", "poke_id": 150},
 
-    {"user_email": "aiko@example.com", "poke_id": 94},
-    {"user_email": "daichi@example.com", "poke_id": 94},
+    # 4位タイ 3票
+    {"user_email": "userA@test.com", "poke_id": 94},
+    {"user_email": "userB@test.com", "poke_id": 94},
+    {"user_email": "userC@test.com", "poke_id": 94},
 
-    {"user_email": "taro@example.com", "poke_id": 133},
-    {"user_email": "hanako@example.com", "poke_id": 133},
+    {"user_email": "userD@test.com", "poke_id": 39},
+    {"user_email": "userE@test.com", "poke_id": 39},
+    {"user_email": "userF@test.com", "poke_id": 39},
 
-    {"user_email": "ken@example.com", "poke_id": 150},
-    {"user_email": "yuki@example.com", "poke_id": 150},
+    # 5位 1票
+    {"user_email": "userJ@test.com", "poke_id": 143},
+    {"user_email": "userJ@test.com", "poke_id": 906},
+    {"user_email": "userJ@test.com", "poke_id": 909},
+    {"user_email": "userJ@test.com", "poke_id": 912},
 
 ]
 
