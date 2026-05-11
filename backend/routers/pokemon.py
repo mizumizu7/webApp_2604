@@ -112,9 +112,12 @@ async def get_pokemons_by_ids(poke_id_list):
             pokemon_data = pokemon_res.json() # 基本情報取得用
             species_data = species_res.json() # 日本語名取得用
 
+            # 日本語名取得
+            jp_name = next((n["name"] for n in species_data["names"] if n["language"]["name"] == "ja"), species_data["name"])
+
             poke_info_list.append({
                 "id": pokemon_data["id"],
-                "name": pokemon_data["species"]["name"],
+                "name": jp_name,
                 "image": pokemon_data["sprites"]["front_default"],
                 # "image": pokemon_data["sprites"]["other"]["official-artwork"]["front_default"],
             })

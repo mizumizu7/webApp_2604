@@ -18,13 +18,14 @@ async def get_ranking(db: Session = Depends(get_db)):
 
     cnt = func.count(Favorite.id).label("cnt")
     # cnt = func.count().label("cnt") # Favorite.idは通常NOT NULLなのでCOUNT(*)と同じ
+    # SELECT poke_id, COUNT(favorites.id) AS cnt FROM favorites GROUP BY poke_id ORDER BY cnt DESC, poke_id ASC;
     stmt = (
         select(
             Favorite.poke_id,
             cnt
         )
         .group_by(Favorite.poke_id)
-        .order_by(cnt.desc())
+        .order_by(cnt.desc(), Favorite.poke_id.asc())
     )
 
     # DBを確認して[(poke_id, cnt), (poke_id, cnt), ...]の形で降順(人気順)でデータを取得する

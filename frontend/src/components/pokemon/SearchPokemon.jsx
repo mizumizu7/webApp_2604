@@ -37,7 +37,7 @@ const SearchPokemon = () => {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="メタモン"
+          placeholder="25 / ピカチュウ"
           // Enterキー入力で実行
           onKeyDown={(e) => {if (e.key == "Enter") searchPokemon()}}
         />
