@@ -1,0 +1,22 @@
+# version: "3.9" # versionの記載、現在は非推奨
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/db:/app/db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      # 接続（マウント）
+      - ./frontend:/app
+      # ホスト側のnode_modulesで上書きしないように対応
+      - /app/node_modules
+    depends_on:
+      - backend

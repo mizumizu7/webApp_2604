@@ -17,6 +17,7 @@ FastAPIとReactを用いて作成したポケモン管理Webアプリです。
 | 🧭 レイアウト | ・ヘッダー固定<br>・サイドバー付きレイアウト<br>・メインエリアのみルーティングで切り替え<br>・レスポンシブ対応 |
 | 🔁 ルーティング（react-router-dom） | ・`/` : ポケモン一覧<br>・`/favorites` : お気に入り一覧<br>・`/ranking` : お気に入り登録数順ランキング表示 |
 | 💾 データベース（SQLite） | ・SQLiteを使用してデータを永続化<br>・ユーザー情報・お気に入り情報を保存<br>・API経由でデータのCRUD操作を実装<br>・seed.py で初期データ投入可能 |
+| 🐳 開発・実行環境 | ・Docker / Docker Compose を使用した環境構築<br>・frontend / backend をコンテナ分離して管理<br>・ワンコマンドで起動可能（開発環境の再現性を確保） |
 
 </details>
 
@@ -84,13 +85,48 @@ FastAPIとReactを用いて作成したポケモン管理Webアプリです。
 ## ⚙️ 環境構築
 
 <details>
+<summary>Docker環境で起動する場合</summary>
 
-### リポジトリをクローン
+### 前提条件
+- Docker Desktop インストール済み
+
+### 手順
+```bash
+# リポジトリをクローン
+git clone <repository-url>
+cd <project-folder>
+
+# Dockerコンテナ起動（初回のみビルド実行）
+docker compose up --build
+
+# 初期データ投入（開発・動作確認で必要な場合のみ実行）
+docker compose exec backend python -m db.seed
+```
+
+### アクセス先
+- Frontend : http://localhost:5173
+- Backend : http://localhost:8000
+- Swagger UI : http://localhost:8000/docs
+
+</details>
+
+
+<details>
+<summary>ローカル環境で起動する場合</summary>
+
+### 前提条件
+- Node.js インストール済み
+- Python インストール済み
+
+### 手順
 
 ```bash
+# リポジトリをクローン
 git clone <repository-url>
 cd <project-folder>
 ```
+
+※ Backend 用と Frontend 用で、2つのターミナルを立ち上げて進めてください
 
 ### 🐍 Backend（FastAPI）
 
@@ -144,36 +180,42 @@ http://localhost:5173
 <details>
 
 🔗 API通信
-フロントエンドでは Axios を使用してバックエンドAPIと通信します。
-axios.get("http://localhost:8000/users")
+- フロントエンドでは Axios を使用してバックエンドAPIと通信します。
 
 🔐 認証機能
-JWT（JSON Web Token）による認証
-bcryptによるパスワードハッシュ化
-ログイン後にトークンを使用してAPIアクセス制御
+- JWT（JSON Web Token）による認証
+- bcryptによるパスワードハッシュ化
+- ログイン後にトークンを使用してAPIアクセス制御
 
 🐍 Python / FastAPI
-REST API設計
-FastAPIによるルーティング設計
-SQLAlchemyによるORM操作
-Alembicによるマイグレーション管理
-JWT認証の実装
-Pydanticによるバリデーション
-非同期処理（async/await）
+- REST API設計
+- FastAPIによるルーティング設計
+- SQLAlchemyによるORM操作
+- Alembicによるマイグレーション管理
+- JWT認証の実装
+- Pydanticによるバリデーション
+- 非同期処理（async/await）
 
 ⚛️ JavaScript / React
-コンポーネント設計
-Hooks（useState / useEffect / custom hooks）
-React Routerによるページ遷移
-Context APIによる状態管理
-AxiosによるAPI通信
-Viteによる開発環境構築
+- コンポーネント設計
+- Hooks（useState / useEffect / custom hooks）
+- React Routerによるページ遷移
+- Context APIによる状態管理
+- AxiosによるAPI通信
+- Viteによる開発環境構築
+
+🐳 Docker
+- Docker / docker-compose を用いた開発環境構築
+- frontend / backend のコンテナ分離管理
+- volumes を使ったホットリロード環境の構築
+- node_modules をコンテナ側で管理する構成
+- FastAPI / React（Vite）のコンテナ化
 
 🧠 今後の改善予定
-TypeScript導入による型安全性向上
-テスト追加（pytest / React Testing Library）
-Docker対応
-CI/CD導入
+- TypeScript導入による型安全性向上
+- テスト追加（pytest / React Testing Library）
+- CI/CD導入
+- アプリ機能追加
 
 APIドキュメントの強化
 📌 注意事項
