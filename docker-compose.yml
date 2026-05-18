@@ -18,5 +18,10 @@ services:
       - ./frontend:/app
       # ホスト側のnode_modulesで上書きしないように対応
       - /app/node_modules
+    environment:
+      # ホットリロードを有効にするための設定
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     depends_on:
+      # 依存関係をサービス名で指定する
       - backend

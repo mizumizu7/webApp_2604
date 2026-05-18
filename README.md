@@ -96,10 +96,20 @@ FastAPIとReactを用いて作成したポケモン管理Webアプリです。
 git clone <repository-url>
 cd <project-folder>
 
-# Dockerコンテナ起動（初回のみビルド実行）
-docker compose up --build
+# dockerの起動確認
+docker --vesion
 
-# 初期データ投入（開発・動作確認で必要な場合のみ実行）
+# .envファイルを作成
+cp backend/.env.example backend/.env
+
+# シークレットキー生成（任意：セキュリティ強化のため）
+# ※ 生成した値は .env に設定してください（JWT_SECRET などで使用）
+docker run --rm python:3.12 python -c "import secrets; print(secrets.token_hex(32))"
+
+# Dockerコンテナ起動（初回のみビルド実行）
+docker compose up -d --build
+
+# 初期データ投入（任意：開発・動作確認で必要な場合のみ実行）
 docker compose exec backend python -m db.seed
 ```
 
@@ -131,14 +141,20 @@ cd <project-folder>
 ### 🐍 Backend（FastAPI）
 
 ```bash
-1. 仮想環境作成
 cd backend
+
+1-1. 仮想環境作成
 python -m venv venv
 仮想環境の起動
-Windows
-venv\Scripts\activate
-Mac / Linux
-source venv/bin/activate
+venv\Scripts\activate # Windows の場合
+source venv/bin/activate # Mac / Linux の場合
+
+1-2. 環境変数設定
+cp .env.example .env # .envファイルを作成
+
+# シークレットキー生成（任意：セキュリティ強化のため）
+# ※ 生成した値は .env に設定してください（JWT_SECRET などで使用）
+python -c "import secrets; print(secrets.token_hex(32))"
 
 2. 依存関係インストール
 pip install -r requirements.txt
@@ -160,9 +176,10 @@ python -m db.seed
 ### ⚛️ Frontend（React + Vite）
 
 ```bash
-1. 依存関係インストール
 cd frontend
-npm install
+
+1. 依存関係インストール
+npm ci
 
 2. 開発サーバー起動
 npm run dev

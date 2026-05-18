@@ -5,9 +5,17 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models import User
+import os
+from dotenv import load_dotenv
 
 
-SECRET_KEY = "SECRET"
+# .envファイルを読み込む
+load_dotenv()
+
+JWT_SECRET = os.getenv("JWT_SECRET")
+if not JWT_SECRET:
+    raise RuntimeError("JWT_SECRET is not set")
+
 ALGORITHM = "HS256"
 
 # oauth2_schemeはtokenを抽出している
@@ -22,7 +30,7 @@ def get_current_user(
     try:
         payload = jwt.decode(
             token,
-            SECRET_KEY,
+            JWT_SECRET,
             algorithms=[ALGORITHM],
         )
         user_id: str | None = payload.get("sub")
